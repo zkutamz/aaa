@@ -1,0 +1,58 @@
+.mega-menu-link {
+    font-size: 14px;
+    color: #666 !important;
+}
+
+.mega-menu-link:hover {
+    color: rgba(0, 0, 0, .5) !important;
+}
+
+.logo-left {
+    padding: 0;
+}
+
+.logo-left .logo {
+    margin-left: 0;
+    margin-right: 30px;
+}
+
+#logo {
+    width: 309px;
+}
+
+#logo img {
+    padding: 19px 0;
+}
+
+#logo img {
+    max-height: 110px;
+}
+
+.logo {
+    line-height: 1;
+    margin: 0;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: auto;
+}
+
+.nav-link-custom {
+    text-transform: uppercase;
+    color: #666 !important;
+    font-family: inherit;
+    font-size: 12px;
+    padding-left: 0 !important;
+    padding-right: 1.5rem !important;
+}
+
+.nav-link-custom:hover {
+    color: rgba(0, 0, 0, .5) !important;
+}
+
+.nav-link-custom::after {
+    content: none;
+}
