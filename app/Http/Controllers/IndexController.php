@@ -13,12 +13,12 @@ use App\Post;
 class IndexController extends Controller
 {
     public function loadIndex(Request $request){
-        $properties = DB::table('tbl_properties')->first();
-        $posts = DB::table('tbl_post')->paginate($properties->posts_show);
+        //$properties = DB::table('tbl_properties')->first();
+        $posts = DB::table('tbl_post')->paginate(8);
         $categories = DB::table('tbl_categories')->get();
 
     	if ($request->ajax()) {
-            $posts = DB::table('tbl_post')->paginate($properties->posts_load);
+            $posts = DB::table('tbl_post')->paginate(4);
     		$view = view('page.page',compact('posts'))->render();
             return response()->json(['html'=>$view]);
         }
