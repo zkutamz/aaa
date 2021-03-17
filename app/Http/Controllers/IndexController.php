@@ -17,7 +17,11 @@ class IndexController extends Controller
         $posts = DB::table('tbl_post')->paginate(8);
         $categories = DB::table('tbl_categories')->get();
 
-    	
+    	if ($request->ajax()) {
+            $posts = DB::table('tbl_post')->paginate(4);
+    		$view = view('page.page',compact('posts'))->render();
+            return response()->json(['html'=>$view]);
+        }
     	return view('page',compact('posts'))->with('categories',$categories);
         
     }
