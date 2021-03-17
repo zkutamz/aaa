@@ -13,7 +13,7 @@ use App\Post;
 class IndexController extends Controller
 {
     public function loadIndex(Request $request){
-        
+        //
         $posts = DB::table('tbl_post')->paginate(8);
         $categories = DB::table('tbl_categories')->get();
 
