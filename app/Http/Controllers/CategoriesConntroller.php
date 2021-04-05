@@ -27,4 +27,17 @@ class CategoriesConntroller extends Controller
         return Redirect::to('categories');
         
     }
+    public function deleteCategories($category_id){
+        //$dateTimeUpdate = date("Y/m/d H:i:s");
+        if(DB::table('tbl_post')->where('category_id',$category_id)->first()){
+            $name = DB::table('tbl_categories')->where('id',$category_id)->first();
+            Session::put('massege','Không thể xóa danh mục "'.$name->name.'".');
+        }
+        else{
+            DB::table('tbl_categories')->where('id',$category_id)->delete();
+            Session::put('massege','Xoá danh mục thành công.');
+        }
+        return Redirect::to('categories');
+        
+    }
 }

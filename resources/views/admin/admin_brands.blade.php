@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="card mb-3">
                             <div class="card-header-tab card-header">
-                                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Categories
+                                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="header-icon lnr-laptop-phone mr-3 text-muted opacity-6"> </i>Brands
                                 </div>
                             </div>
                             <div class="card-body">
@@ -41,34 +41,34 @@
                                     <thead>
                                         <tr role="row">
                                           <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1"  aria-sort="ascending" aria-label="Name: activate to sort column descending">ID</th>
-                                          <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"  aria-label="Position: activate to sort column ascending">Danh mục</th>
+                                          <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"  aria-label="Position: activate to sort column ascending">thương hiệu</th>
                                           <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"  aria-label="Office: activate to sort column ascending">Ngày tạo</th>
                                           <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"  aria-label="Age: activate to sort column ascending">Ngày cập nhật</th>
                                           <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"  aria-label="Start date: activate to sort column ascending">Thao tác</th>
                                     </thead>
                                     <tbody>
 
-                    @foreach ($categories as $key => $category)
+                    @foreach ($brands as $key => $brand)
                     
                   <tr>
                     <td>
-                        {{$category->id}}
+                        {{$brand->brand_id}}
                     </td>
-                    <td id="{{$category->id}}">
-                      {{$category->name}}
-                    </td>
-                    <td>
-                      {{$category->created_at}}
+                    <td id="{{$brand->brand_id}}">
+                      {{$brand->brand_name}}
                     </td>
                     <td>
-                      {{$category->updated_at}}
+                      {{$brand->created_at}}
+                    </td>
+                    <td>
+                      {{$brand->updated_at}}
                     </td>
                     <td>
                      <div class="card-tools">
-                      <a onclick="update({{$category->id}})" class="text-muted">
+                      <a onclick="update({{$brand->brand_id}})" class="text-muted">
                         <i class="fa fa-edit"></i>
                       </a>
-                      <a href="{{URL::to('categories-delete/'.$category->id)}}" class="text-muted">
+                      <a href="{{URL::to('brands-delete/'.$brand->brand_id)}}" class="text-muted">
                         <i class="	fa fa-times"></i>
                       </a>
                       </div>
@@ -91,18 +91,18 @@
                         </div>
 			<div id="id01" class="modal">
   
-				<form class="modal-content animate" action="{{URL::to('categories-add')}}" method="post">
+				<form class="modal-content animate" action="{{URL::to('brands-add')}}" method="post">
 					<div class="imgcontainer">
 						<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 						<h1 class="page-header test">
-						 THÊM DANH MỤC SẢN PHẨM
+						 THÊM THƯƠNG HIỆU SẢN PHẨM
 						</h1>
 					</div>
 
 					<div class="container">
 						{{csrf_field()}}
-						<label for="cat_name"><b>Tên danh mục</b></label>
-						<input type="text" placeholder="tên danh mục" name="cat_name" required>
+						<label for="brand_name"><b>Tên thương hiệu</b></label>
+						<input type="text" placeholder="tên thương hiệu" name="brand_name" required>
 						<button type="submit">Thêm</button>
 					</div>
 
@@ -117,15 +117,15 @@
 					<div class="imgcontainer">
 						<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 						<h1 class="page-header test">
-						 CẬP NHẬT DANH MỤC SẢN PHẨM
+						 CẬP NHẬT THƯƠNG HIỆU SẢN PHẨM
 						</h1>
 					</div>
 
 					<div class="container">
 						{{csrf_field()}}
-            <input id="cat_id" name="cat_id" type="hidden">
-						<label for="cat_name"><b>Tên danh mục</b></label>
-						<input id="catName" type="text" placeholder="tên danh mục" name="cat_name" required>
+            <input id="cat_id" name="brand_id" type="hidden">
+						<label for="brand_name"><b>Tên thương hiệu</b></label>
+						<input id="brandName" type="text" placeholder="tên thương hiệu" name="brand_name" required>
 						<button type="submit">Cập nhật</button>
 					</div>
 
@@ -139,12 +139,12 @@
 <script>
 function update(id){
   document.getElementById('id02').style.display='block';
-  document.getElementById('update-cat').action= "{{URL::to('categories-update')}}";
-  document.getElementById('catName').value = document.getElementById(id).innerHTML;
-  document.getElementById('cat_id').value = id;
+  document.getElementById('update-brand').action= "{{URL::to('brands-update')}}";
+  document.getElementById('brandName').value = document.getElementById(id).innerHTML;
+  document.getElementById('brand_id').value = id;
 };
 // function delete(id){
-//    document.getElementById('update-cat').action= "{{URL::to('categories-delete')}}";
+//    document.getElementById('update-cat').action= "{{URL::to('brands-delete')}}";
 // }
 // Get the modal
 var modal = document.getElementById('id01');

@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use App\Http\Requests;
+use Analytics;
 use Illuminate\Support\Facades\Redirect;
+use Spatie\Analytics\Period;
 
 session_start();
 
@@ -20,6 +22,8 @@ class AdminController extends Controller
     public function dashBoard(){
         $check = Session::get('admin_active');
         if($check == '1'){
+            // $data = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+            // dd($data);
             return view('admin.admin_layout');
         }
         else{
@@ -74,10 +78,28 @@ class AdminController extends Controller
     public  function  showPosts(){
         $check = Session::get('admin_active');
         if($check == 1){
-        $data = DB::table('tbl_post')->get();
+        $data = DB::table('tbl_post')->select('tbl_post.*','tbl_categories.name','tbl_brand.brand_name')->join('tbl_categories', function ($join) {
+                  $join->on('tbl_post.category_id', '=', 'tbl_categories.id');
+                  })->join('tbl_brand', function ($join) {
+                  $join->on('tbl_post.brand_id', '=', 'tbl_brand.brand_id');
+                  })->orderBy('tbl_post.created_at', 'desc')->get(); 
         $dateCat = DB::table('tbl_categories')->get();
-        $manager_post = view('admin.admin_post')->with('posts',$data)->with('categories',$dateCat);
+        $dateBrand = DB::table('tbl_brand')->get();
+        $dataProperties = DB::table('tbl_properties')->first();
+        $manager_post = view('admin.admin_post')->with('posts',$data)->with('categories',$dateCat)->with('brands',$dateBrand)->with('properties',$dataProperties);
         return view('layout')->with('admin.admin_post',$manager_post);
+        }
+        else{
+            return Redirect::to('/admin');
+        }
+    }
+    public  function  showBrands(){
+        $check = Session::get('admin_active');
+        if($check == 1){
+            $data = DB::table('tbl_brand')->get();
+            
+            $manager_brands = view('admin.admin_brands')->with('brands',$data);
+            return view('layout')->with('admin.admin_brands',$manager_brands);
         }
         else{
             return Redirect::to('/admin');

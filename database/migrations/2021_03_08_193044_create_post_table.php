@@ -20,6 +20,7 @@ class CreatePostTable extends Migration
             $table->string('img');
             $table->string('link');
             $table->integer('category_id');
+            $table->integer('brand_id');
             $table->timestamps();
         });
     }

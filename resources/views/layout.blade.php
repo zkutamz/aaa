@@ -39,8 +39,9 @@
 		
 		<ul class="nav menu">
 			<li class="active"><a href="{{URL::to('/adminDashBoard')}}"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
-			<li><a href="{{URL::to('/posts')}}"><em class="fa fa-calendar">&nbsp;</em> posts</a></li>
-			<li><a href="{{URL::to('/categories')}}"><em class="fa fa-bar-chart">&nbsp;</em> categoies</a></li>
+			<li><a href="{{URL::to('/posts')}}"><em class="fa fa-calendar">&nbsp;</em> Posts</a></li>
+			<li><a href="{{URL::to('/categories')}}"><em class="fa fa-bar-chart">&nbsp;</em> Categoies</a></li>
+			<li><a href="{{URL::to('/brands')}}"><em class="fa fa-bar-chart">&nbsp;</em> Brands</a></li>
 			<li><a href="{{URL::to('/properties')}}"><em class="fa fa-bar-chart">&nbsp;</em> properties</a></li>
 			<li><a href="{{URL::to('/logout')}}"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
